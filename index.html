@@ -71,7 +71,7 @@
         <img
         src="https://supercell.com/images/1a5b69311180a4a1c374e10556941f05/1281/hero_bg_brawlstars.a385872a.webp"
         alt="荒野亂鬥圖片"
-        style="width: 80%; max-width: 600px; margin-top: 20px;"/>
+        style="width: 100%; max-width: 800px; margin-top: 20px;"/>
     </div>
 
     <!-- 遊戲介紹 -->
@@ -79,39 +79,57 @@
       <h3 class="center-align">遊戲簡介</h3>
       <p>
         《荒野亂鬥》是一款由 <strong>Supercell</strong> 開發的多人在線對戰手遊，玩家可以選擇不同的角色進行 3v3
-        戰鬥、單人模式或挑戰賽，考驗玩家的策略和操作技巧。
+        戰鬥、單人模式或挑戰賽，考驗玩家的策略和操作技。
       </p>
     </div>
 
     <!-- 角色展示 -->
+    <style>
+      .card .card-image .card-title {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    </style>
+    
     <div class="container">
-      <h4 class="center-align">角色展示</h4>
+      <h4 class="center-align">角色列表</h4>
       <div class="row" id="brawler-cards"></div>
     </div>
 
     <script>
       const photos = [
-        "https://static.wikia.nocookie.net/brawlstars/images/1/1b/Shelly_Skin-Default.png",
-        "https://static.wikia.nocookie.net/brawlstars/images/e/e8/Colt_Skin-Default.png",
-        "https://static.wikia.nocookie.net/brawlstars/images/a/a3/Bull_Skin-Default.png",
-        "https://static.wikia.nocookie.net/brawlstars/images/4/42/Nita_Skin-Default.png",
-        "https://static.wikia.nocookie.net/brawlstars/images/7/7b/Dynamike_Skin-Default.png",
+        
+        "https://cdn.brawlify.com/brawlers/borderless/16000000.png",
+        "https://cdn.brawlify.com/brawlers/borderless/16000026.png",
+        "https://cdn.brawlify.com/brawlers/borderless/16000020.png" ,
+        "https://cdn.brawlify.com/brawlers/borderless/16000009.png" ,
+        "https://cdn.brawlify.com/brawlers/borderless/16000011.png",
+        "https://cdn.brawlify.com/brawlers/borderless/16000043.png",
       ];
 
-      const brawler_names = ["Shelly", "Colt", "Bull", "Nita", "Dynamike"];
+      const brawler_names = ["Shelly", "Bibi", "Frank", "Dynamike","Mortis","Edgar"];
 
       const brawler_descriptions = [
-        "中距離攻擊角色，適合新手玩家。",
-        "高傷害遠程角色，射擊速度快。",
-        "血量高、近戰傷害強大的角色。",
-        "擁有召喚熊夥伴的特殊技能。",
-        "投擲炸彈，造成範圍傷害的角色。",
+        "初始角",
+        "Homerun",
+        "大型充電寶",
+        "血鬼好朋友",
+        '雷隊友首選',
+        "孤兒角色",
       ];
 
       let cardContent = "";
       for (let i = 0; i < photos.length; i++) {
         cardContent += `
-          <div class="col s12 m6 l4">
+          <div class="col s6 m5 l2">
             <div class="card">
               <div class="card-image">
                 <img src="${photos[i]}" alt="${brawler_names[i]}">
@@ -129,19 +147,23 @@
       }
       document.getElementById("brawler-cards").innerHTML = cardContent;
     </script>
+    <div class="card-action center-align">
+      <a href="all_character.html" class="btn black darken-2">查看更多角色</a>
+    </div>
+    
 
-    <!-- 嵌入遊戲影片 -->
+    <!-- 嵌入遊戲影片
     <div class="container">
       <h4 class="center-align">遊戲影片</h4>
       <iframe
         width="100%"
         height="400"
-        src="https://www.youtube.com/embed/f7uK3shn8zQ"
+        src="https://youtu.be/6F3pA_cwMgo?si=wzyTZWSLn8G6qi2d"
         title="荒野亂鬥遊戲影片"
         frameborder="0"
         allowfullscreen
       ></iframe>
-    </div>
+    </div> -->
 
     <!-- 回饋表單 -->
     <div class="container">
@@ -149,7 +171,7 @@
       <form
         id="feedbackForm"
         method="POST"
-        action="https://docs.google.com/forms/d/e/您的表單ID/formResponse"
+        action="https://docs.google.com/spreadsheets/d/1I1HfDzAB8ONFgwAIAu4QIlyPxoJaMqQXYZZBMhk0Dsk/edit?usp=sharing"
         target="hidden_iframe"
         onsubmit="submitted=true;"
       >
@@ -190,7 +212,7 @@
 
         <!-- 提交按鈕 -->
         <button
-          class="btn waves-effect waves-light yellow darken-2"
+          class="btn waves-effect waves-light black darken-2"
           type="submit"
         >
           提交回饋
@@ -210,11 +232,12 @@
         });
       });
     </script>
+    <br>
 
     <!-- 頁尾 -->
-    <footer class="page-footer yellow darken-2">
+    <footer class="page-footer black darken-2">
       <div class="container center-align">
-        © 2024 荒野亂鬥介紹網頁 | 由玩家製作
+        © 2024 荒野亂鬥介紹網頁 | 4110029007陳彥睿
       </div>
     </footer>
   </body>

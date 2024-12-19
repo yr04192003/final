@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>荒野亂鬥角色介紹</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    .card .card-image {
+      text-align: center;
+    }
+
+    .card-content h5 {
+      margin-top: 10px;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .card-content p {
+      font-size: 1rem;
+      color: #333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- 導覽列 -->
+    <nav>
+        <div class="nav-wrapper black darken-2">
+        <a href="#" class="brand-logo center">荒野亂鬥角色介紹</a>
+        <ul id="nav-mobile" class="left">
+            <li><a href="index.html">返回首頁</a></li>
+        </ul>
+        </div>
+    </nav>
+
+  <!-- 角色展示區域 -->
+    <style>
+        .card .card-image .card-title {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        }
+    </style>
+    
+    <div class="container">
+        <h4 class="center-align">角色列表</h4>
+        <div class="row" id="brawler-cards"></div>
+    </div>
+
+    <script>
+        const photos = [
+        
+        "https://cdn.brawlify.com/brawlers/borderless/16000000.png",
+        "https://cdn.brawlify.com/brawlers/borderless/16000026.png",
+        "https://cdn.brawlify.com/brawlers/borderless/16000020.png" ,
+        "https://cdn.brawlify.com/brawlers/borderless/16000009.png" ,
+        "https://cdn.brawlify.com/brawlers/borderless/16000011.png",
+        "https://cdn.brawlify.com/brawlers/borderless/16000043.png",
+        ];
+
+        const brawler_names = ["Shelly", "Bibi", "Frank", "Dynamike","Mortis","Edgar"];
+
+        const brawler_descriptions = [
+        "初始角",
+        "Homerun",
+        "大型充電寶",
+        "血鬼好朋友",
+        '雷隊友首選',
+        "孤兒角色",
+        ];
+
+    let cardContent = "";
+    for (let i = 0; i < photos.length; i++) {
+      cardContent += `
+        <div class="col s6 m5 l2">
+          <div class="card">
+            <div class="card-image">
+              <img src="${photos[i]}" alt="${brawler_names[i]}">
+              <span class="card-title">${brawler_names[i]}</span>
+            </div>
+            <div class="card-content">
+              <p>${brawler_descriptions[i]}</p>
+            </div>
+            <div class="card-action">
+              <a href="https://brawlstars.fandom.com/wiki/${brawler_names[i]}" target="_blank">了解更多</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    document.getElementById("brawler-cards").innerHTML = cardContent;
+  </script>
+</body>
+</html>
