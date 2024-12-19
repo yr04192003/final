@@ -84,156 +84,141 @@
     </div>
 
     <!-- 角色展示 -->
-    <style>
-      .card .card-image .card-title {
-        position: absolute;
-        bottom: 0px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        font-size: 1.2rem;
-        font-weight: bold;
+    <!DOCTYPE html> 
+    <html> 
+    <head> 
+    <script type="text/javascript">
+    function test(json) {
+      for (var i = 0; i < json.feed.entry.length; i++) {
+        var field0 = json.feed.entry[i].gsx$a.$t;
+        var field1 = json.feed.entry[i].gsx$b.$t;
+        document.write( i +" | 便當: " + field0 + "  |  飲料: " + field1 + "</br>");
       }
-    </style>
-    
-    <div class="container">
-      <h4 class="center-align">角色列表</h4>
-      <div class="row" id="brawler-cards"></div>
-    </div>
+    }
+    </script>
+    <script type='text/javascript' src='https://docs.google.com/spreadsheets/d/1X3PkgUj-xM6MKyclE4Ak3v1l-71XdYYrA-w7lm_6Nxw/edit?gid=0#gid=0'></script>
+    </head>
+    <body>
+    </body>
+    </html>
+    <!-- <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  // Google Visualization API
+  google.charts.load('current', { packages: ['corechart'] });
+  google.charts.setOnLoadCallback(loadHeroData);
 
-    <script>
-      const photos = [
-        
-        "https://cdn.brawlify.com/brawlers/borderless/16000000.png",
-        "https://cdn.brawlify.com/brawlers/borderless/16000026.png",
-        "https://cdn.brawlify.com/brawlers/borderless/16000020.png" ,
-        "https://cdn.brawlify.com/brawlers/borderless/16000009.png" ,
-        "https://cdn.brawlify.com/brawlers/borderless/16000011.png",
-        "https://cdn.brawlify.com/brawlers/borderless/16000043.png",
-      ];
+  function loadHeroData() {
+    // Google 試算表的 gviz URL
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/1X3PkgUj-xM6MKyclE4Ak3v1l-71XdYYrA-w7lm_6Nxw/gviz/tq?sheet=final';
 
-      const brawler_names = ["Shelly", "Bibi", "Frank", "Dynamike","Mortis","Edgar"];
+    const query = new google.visualization.Query(sheetUrl);
+    query.setQuery('SELECT A, B, C, D'); // 選擇需要的列
+    query.send(processData);
+  }
 
-      const brawler_descriptions = [
-        "初始角",
-        "Homerun",
-        "大型充電寶",
-        "血鬼好朋友",
-        '雷隊友首選',
-        "孤兒角色",
-      ];
+  function processData(response) {
+    const data = response.getDataTable();
+    const numRows = data.getNumberOfRows();
 
-      let cardContent = "";
-      for (let i = 0; i < photos.length; i++) {
-        cardContent += `
-          <div class="col s6 m5 l2">
-            <div class="card">
-              <div class="card-image">
-                <img src="${photos[i]}" alt="${brawler_names[i]}">
-                <span class="card-title">${brawler_names[i]}</span>
-              </div>
-              <div class="card-content">
-                <p>${brawler_descriptions[i]}</p>
-              </div>
-              <div class="card-action">
-                <a href="https://brawlstars.fandom.com/wiki/${brawler_names[i]}" target="_blank">了解更多</a>
-              </div>
+    let cardContent = '';
+    for (let i = 0; i < numRows; i++) {
+      const name = data.getValue(i, 0); // 英雄名稱
+      const imgUrl = data.getValue(i, 1); // 圖片網址
+      const description = data.getValue(i, 2); // 描述
+      const link = data.getValue(i, 3); // 更多連結
+
+      cardContent += `
+        <div class="col s6 m5 l2">
+          <div class="card">
+            <div class="card-image">
+              <img src="${imgUrl}" alt="${name}">
+              <span class="card-title">${name}</span>
+            </div>
+            <div class="card-content">
+              <p>${description}</p>
+            </div>
+            <div class="card-action">
+              <a href="${link}" target="_blank">了解更多</a>
             </div>
           </div>
-        `;
-      }
-      document.getElementById("brawler-cards").innerHTML = cardContent;
-    </script>
+        </div>
+      `;
+    }
+
+    // 插入到角色列表的容器中
+    document.getElementById('brawler-cards').innerHTML = cardContent;
+  }
+</script> -->
+
     <div class="card-action center-align">
       <a href="all_character.html" class="btn black darken-2">查看更多角色</a>
     </div>
     
 
-    <!-- 嵌入遊戲影片
-    <div class="container">
-      <h4 class="center-align">遊戲影片</h4>
-      <iframe
-        width="100%"
-        height="400"
-        src="https://youtu.be/6F3pA_cwMgo?si=wzyTZWSLn8G6qi2d"
-        title="荒野亂鬥遊戲影片"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-    </div> -->
-
     <!-- 回饋表單 -->
-    <div class="container">
+    <div class="container" style="margin-top: 50px;">
       <h4 class="center-align">玩家回饋表單</h4>
       <form
-        id="feedbackForm"
+        id="playerFeedbackForm"
         method="POST"
-        action="https://docs.google.com/spreadsheets/d/1I1HfDzAB8ONFgwAIAu4QIlyPxoJaMqQXYZZBMhk0Dsk/edit?usp=sharing"
-        target="hidden_iframe"
-        onsubmit="submitted=true;"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfugJAysDLJiLFWzdcAc4joInE_hsPWKHHE2p2C5Y5uPGUr5A/formResponse"
+        target="_self"
       >
         <!-- 玩家名稱 -->
         <div class="input-field">
-          <input type="text" name="entry.123456789" id="playerName" required />
+          <input type="text" id="playerName" name="entry.1507385140" required />
           <label for="playerName">玩家名稱</label>
         </div>
-
-        <!-- 喜歡的角色 -->
+    
+        <!-- 最喜歡的英雄 -->
         <div class="input-field">
-          <input type="text" name="entry.987654321" id="favoriteBrawler" required />
-          <label for="favoriteBrawler">最喜歡的角色</label>
+          <input type="text" id="favoriteHero" name="entry.1856862631" required />
+          <label for="favoriteHero">最喜歡的英雄</label>
         </div>
-
-        <!-- 遊戲評分 -->
+    
+        <!-- 最喜歡的模式 -->
         <div class="input-field">
-          <input
-            type="number"
-            name="entry.1122334455"
-            id="gameRating"
-            min="1"
-            max="10"
-            required
-          />
-          <label for="gameRating">遊戲評分 (1-10)</label>
+          <select id="favoriteMode" name="entry.1856862631" required>
+            <option value="" disabled selected>選擇模式</option>
+            <option value="寶石爭奪戰">寶石爭奪戰</option>
+            <option value="荒野生死鬥">荒野生死鬥</option>
+            <option value="金庫保衛戰">金庫保衛戰</option>
+            <option value="亂鬥足球">亂鬥足球</option>
+            <option value="其他">其他</option>
+          </select>
+          <label for="favoriteMode">最喜歡的模式</label>
         </div>
-
-        <!-- 留言回饋 -->
-        <div class="input-field">
-          <textarea
-            name="entry.2233445566"
-            id="feedbackMessage"
-            class="materialize-textarea"
-          ></textarea>
-          <label for="feedbackMessage">留言回饋</label>
-        </div>
-
+    
         <!-- 提交按鈕 -->
-        <button
-          class="btn waves-effect waves-light black darken-2"
-          type="submit"
-        >
-          提交回饋
-        </button>
+        <div class="center-align">
+          <button class="btn waves-effect waves-light black darken-2" type="submit">
+            提交回饋
+          </button>
+        </div>
       </form>
-      <!-- 隱藏 iframe 用於 Google 表單回傳 -->
-      <iframe name="hidden_iframe" style="display: none"></iframe>
+      <iframe name="hidden_iframe" style="display: none;"></iframe>
     </div>
-
+    
+    <br>
+    
+    <!-- 初始化 Materialize 的 Select -->
     <script>
-      let submitted = false;
-      window.addEventListener("load", () => {
-        document.getElementById("feedbackForm").addEventListener("submit", () => {
-          if (submitted) {
-            alert("感謝您的回饋！資料已提交。");
-          }
-        });
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        M.FormSelect.init(elems);
+      });
+    
+      // 表單提交事件
+      document.getElementById('playerFeedbackForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const playerName = document.getElementById('playerName').value;
+        const favoriteHero = document.getElementById('favoriteHero').value;
+        const favoriteMode = document.getElementById('favoriteMode').value;
+    
+        alert(`感謝您的回饋！\n玩家名稱: ${playerName}\n最喜歡的英雄: ${favoriteHero}\n最喜歡的模式: ${favoriteMode}`);
       });
     </script>
-    <br>
-
+    
     <!-- 頁尾 -->
     <footer class="page-footer black darken-2">
       <div class="container center-align">
