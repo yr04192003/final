@@ -84,76 +84,63 @@
     </div>
 
     <!-- 角色展示 -->
-    <!DOCTYPE html> 
-    <html> 
-    <head> 
-    <script type="text/javascript">
-    function test(json) {
-      for (var i = 0; i < json.feed.entry.length; i++) {
-        var field0 = json.feed.entry[i].gsx$a.$t;
-        var field1 = json.feed.entry[i].gsx$b.$t;
-        document.write( i +" | 便當: " + field0 + "  |  飲料: " + field1 + "</br>");
+    <div class="container">
+      <h3 class="center-align">角色介紹</h3>
+      <div class="row" id="brawler-cards"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+      // Google Visualization API
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(loadHeroData);
+
+      function loadHeroData() {
+        // Google 試算表的 gviz URL
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/1X3PkgUj-xM6MKyclE4Ak3v1l-71XdYYrA-w7lm_6Nxw/gviz/tq?sheet=sheet1';
+
+        const query = new google.visualization.Query(sheetUrl);
+        query.setQuery('SELECT A, B, C, D'); // 選擇需要的列
+        query.send(processData);
       }
-    }
+
+      function processData(response) {
+        const data = response.getDataTable();
+        const numRows = data.getNumberOfRows();
+
+        let cardContent = '';
+        for (let i = 0; i < numRows; i++) {
+          const name = data.getValue(i, 0); // 英雄名稱
+          const imgUrl = data.getValue(i, 1); // 圖片網址
+          const description = data.getValue(i, 2); // 描述
+          const link = data.getValue(i, 3); // 更多連結
+
+          cardContent += `
+            <div class="col s6 m3 l2">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${imgUrl}" alt="${name}">
+                  <span class="card-title">${name}</span>
+                </div>
+                <div class="card-content">
+                  <p>${description}</p>
+                </div>
+                <div class="card-action">
+                  <a href="${link}" target="_blank">了解更多</a>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        // 插入到角色列表的容器中
+        document.getElementById('brawler-cards').innerHTML = cardContent;
+      }
     </script>
-    <script type='text/javascript' src='https://docs.google.com/spreadsheets/d/1X3PkgUj-xM6MKyclE4Ak3v1l-71XdYYrA-w7lm_6Nxw/edit?gid=0#gid=0'></script>
-    </head>
-    <body>
-    </body>
-    </html>
-    <!-- <script src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-  // Google Visualization API
-  google.charts.load('current', { packages: ['corechart'] });
-  google.charts.setOnLoadCallback(loadHeroData);
-
-  function loadHeroData() {
-    // Google 試算表的 gviz URL
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/1X3PkgUj-xM6MKyclE4Ak3v1l-71XdYYrA-w7lm_6Nxw/gviz/tq?sheet=final';
-
-    const query = new google.visualization.Query(sheetUrl);
-    query.setQuery('SELECT A, B, C, D'); // 選擇需要的列
-    query.send(processData);
-  }
-
-  function processData(response) {
-    const data = response.getDataTable();
-    const numRows = data.getNumberOfRows();
-
-    let cardContent = '';
-    for (let i = 0; i < numRows; i++) {
-      const name = data.getValue(i, 0); // 英雄名稱
-      const imgUrl = data.getValue(i, 1); // 圖片網址
-      const description = data.getValue(i, 2); // 描述
-      const link = data.getValue(i, 3); // 更多連結
-
-      cardContent += `
-        <div class="col s6 m5 l2">
-          <div class="card">
-            <div class="card-image">
-              <img src="${imgUrl}" alt="${name}">
-              <span class="card-title">${name}</span>
-            </div>
-            <div class="card-content">
-              <p>${description}</p>
-            </div>
-            <div class="card-action">
-              <a href="${link}" target="_blank">了解更多</a>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    // 插入到角色列表的容器中
-    document.getElementById('brawler-cards').innerHTML = cardContent;
-  }
-</script> -->
 
     <div class="card-action center-align">
       <a href="all_character.html" class="btn black darken-2">查看更多角色</a>
     </div>
-    
 
     <!-- 回饋表單 -->
     <div class="container" style="margin-top: 50px;">
@@ -211,19 +198,4 @@
       // 表單提交事件
       document.getElementById('playerFeedbackForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const playerName = document.getElementById('playerName').value;
-        const favoriteHero = document.getElementById('favoriteHero').value;
-        const favoriteMode = document.getElementById('favoriteMode').value;
-    
-        alert(`感謝您的回饋！\n玩家名稱: ${playerName}\n最喜歡的英雄: ${favoriteHero}\n最喜歡的模式: ${favoriteMode}`);
-      });
-    </script>
-    
-    <!-- 頁尾 -->
-    <footer class="page-footer black darken-2">
-      <div class="container center-align">
-        © 2024 荒野亂鬥介紹網頁 | 4110029007陳彥睿
-      </div>
-    </footer>
-  </body>
-</html>
+       
