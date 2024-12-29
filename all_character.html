@@ -1,102 +1,201 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>荒野亂鬥角色介紹</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <style>
-    .card .card-image {
-      text-align: center;
-    }
+  <head>
+    <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
 
-    .card-content h5 {
-      margin-top: 10px;
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brawl Stars</title>
 
-    .card-content p {
-      font-size: 1rem;
-      color: #333;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <!-- 導覽列 -->
-    <nav>
-        <div class="nav-wrapper black darken-2">
-        <a href="#" class="brand-logo center">荒野亂鬥角色介紹</a>
-        <ul id="nav-mobile" class="left">
-            <li><a href="index.html">返回首頁</a></li>
-        </ul>
-        </div>
-    </nav>
+    <!-- Materialize CSS 和 Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
-  <!-- 角色展示區域 -->
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <style>
-        .card .card-image .card-title {
-        position: absolute;
-        bottom: 0px;
-        left: 0;
-        right: 0;
-        text-align: center;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        font-size: 1.2rem;
+      /* 自訂 CSS */
+      body {
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+      }
+      nav {
+        background-color: #000000;
+      }
+      .card .card-title {
         font-weight: bold;
-        }
+      }
+      iframe {
+        margin-top: 20px;
+      }
     </style>
+  </head>
+  <body>
+    <!-- 導覽列 -->
+     <!-- Supercell 荒野亂鬥圖片 -->
     
-    <div class="container">
-        <h4 class="center-align">角色列表</h4>
-        <div class="row" id="brawler-cards"></div>
+    <nav>
+      <div class="nav-wrapper">
+
+        <a href="#" class="brand-logo center">荒野亂鬥介紹</a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li>
+            <a href="https://brawlstars.com/" target="_blank">官方網站</a>
+          </li>
+          <li>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.supercell.brawlstars"
+              target="_blank"
+              >Google Play 下載</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://apps.apple.com/tw/app/brawl-stars/id1229016807"
+              target="_blank"
+              >App Store 下載</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container center-align">
+        <img
+        src="https://supercell.com/images/1a5b69311180a4a1c374e10556941f05/1281/hero_bg_brawlstars.a385872a.webp"
+        alt="荒野亂鬥圖片"
+        style="width: 100%; max-width: 800px; margin-top: 20px;"/>
     </div>
 
+    <!-- 遊戲介紹 -->
+    <div class="container">
+      <h3 class="center-align">遊戲簡介</h3>
+      <p>
+        《荒野亂鬥》是一款由 <strong>Supercell</strong> 開發的多人在線對戰手遊，玩家可以選擇不同的角色進行 3v3
+        戰鬥、單人模式或挑戰賽，考驗玩家的策略和操作技。
+      </p>
+    </div>
+
+    <!-- 角色展示 -->
+    <div class="container">
+      <h3 class="center-align">角色介紹</h3>
+      <div class="row" id="brawler-cards"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        const photos = [
-        
-        "https://cdn.brawlify.com/brawlers/borderless/16000000.png",
-        "https://cdn.brawlify.com/brawlers/borderless/16000026.png",
-        "https://cdn.brawlify.com/brawlers/borderless/16000020.png" ,
-        "https://cdn.brawlify.com/brawlers/borderless/16000009.png" ,
-        "https://cdn.brawlify.com/brawlers/borderless/16000011.png",
-        "https://cdn.brawlify.com/brawlers/borderless/16000043.png",
-        ];
+      // Google Visualization API
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(loadHeroData);
 
-        const brawler_names = ["Shelly", "Bibi", "Frank", "Dynamike","Mortis","Edgar"];
+      function loadHeroData() {
+        // Google 試算表的 gviz URL
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/1X3PkgUj-xM6MKyclE4Ak3v1l-71XdYYrA-w7lm_6Nxw/gviz/tq?sheet=sheet1';
 
-        const brawler_descriptions = [
-        "初始角",
-        "Homerun",
-        "大型充電寶",
-        "血鬼好朋友",
-        '雷隊友首選',
-        "孤兒角色",
-        ];
+        const query = new google.visualization.Query(sheetUrl);
+        query.setQuery('SELECT A, B, C, D'); // 選擇需要的列
+        query.send(processData);
+      }
 
-    let cardContent = "";
-    for (let i = 0; i < photos.length; i++) {
-      cardContent += `
-        <div class="col s6 m5 l2">
-          <div class="card">
-            <div class="card-image">
-              <img src="${photos[i]}" alt="${brawler_names[i]}">
-              <span class="card-title">${brawler_names[i]}</span>
+      function processData(response) {
+        const data = response.getDataTable();
+        const numRows = data.getNumberOfRows();
+
+        let cardContent = '';
+        for (let i = 0; i < 6; i++) {
+          const name = data.getValue(i, 0); // 英雄名稱
+          const imgUrl = data.getValue(i, 1); // 圖片網址
+          const description = data.getValue(i, 2); // 描述
+          const link = data.getValue(i, 3); // 更多連結
+
+          cardContent += `
+            <div class="col s6 m3 l2">
+              <div class="card">
+                <div class="card-image">
+                  <img src="${imgUrl}" alt="${name}">
+                  <span class="card-title">${name}</span>
+                </div>
+                <div class="card-content">
+                  <p>${description}</p>
+                </div>
+                <div class="card-action">
+                  <a href="${link}" target="_blank">了解更多</a>
+                </div>
+              </div>
             </div>
-            <div class="card-content">
-              <p>${brawler_descriptions[i]}</p>
-            </div>
-            <div class="card-action">
-              <a href="https://brawlstars.fandom.com/wiki/${brawler_names[i]}" target="_blank">了解更多</a>
-            </div>
-          </div>
+          `;
+        }
+
+        // 插入到角色列表的容器中
+        document.getElementById('brawler-cards').innerHTML = cardContent;
+      }
+    </script>
+
+    <div class="card-action center-align">
+      <a href="all_character.html" class="btn black darken-2">查看更多角色</a>
+    </div>
+
+    <!-- 回饋表單 -->
+    <div class="container" style="margin-top: 50px;">
+      <h4 class="center-align">玩家回饋表單</h4>
+      <form
+        id="playerFeedbackForm"
+        method="POST"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfugJAysDLJiLFWzdcAc4joInE_hsPWKHHE2p2C5Y5uPGUr5A/formResponse"
+        target="_self"
+      >
+        <!-- 玩家名稱 -->
+        <div class="input-field">
+          <input type="text" id="playerName" name="entry.1507385140" required />
+          <label for="playerName">玩家名稱</label>
         </div>
-      `;
-    }
-    document.getElementById("brawler-cards").innerHTML = cardContent;
-  </script>
-</body>
-</html>
+    
+        <!-- 最喜歡的英雄 -->
+        <div class="input-field">
+          <input type="text" id="favoriteHero" name="entry.1856862631" required />
+          <label for="favoriteHero">最喜歡的英雄</label>
+        </div>
+    
+        <!-- 最喜歡的模式 -->
+        <div class="input-field">
+          <select id="favoriteMode" name="entry.1856862631" required>
+            <option value="" disabled selected>選擇模式</option>
+            <option value="寶石爭奪戰">寶石爭奪戰</option>
+            <option value="荒野生死鬥">荒野生死鬥</option>
+            <option value="金庫保衛戰">金庫保衛戰</option>
+            <option value="亂鬥足球">亂鬥足球</option>
+            <option value="其他">其他</option>
+          </select>
+          <label for="favoriteMode">最喜歡的模式</label>
+        </div>
+    
+        <!-- 提交按鈕 -->
+        <div class="center-align">
+          <button class="btn waves-effect waves-light black darken-2" type="submit">
+            提交回饋
+          </button>
+        </div>
+      </form>
+      <iframe name="hidden_iframe" style="display: none;"></iframe>
+    </div>
+    
+    <br>
+    
+    <!-- 初始化 Materialize 的 Select -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        M.FormSelect.init(elems);
+      });
+    
+      // 表單提交事件
+      document.getElementById('playerFeedbackForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+       
