@@ -148,18 +148,18 @@
       <form
         id="playerFeedbackForm"
         method="POST"
-        action="https://docs.google.com/forms/d/e/1FAIpQLSfugJAysDLJiLFWzdcAc4joInE_hsPWKHHE2p2C5Y5uPGUr5A/formResponse"
-        target="_self"
+        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScwc1xIynqxvVK-JYGqOGsQMhhQxEcmke--LnmI-qLm857SYw/formResponse"
+        target="hidden_iframe"
       >
         <!-- 玩家名稱 -->
         <div class="input-field">
-          <input type="text" id="playerName" name="entry.1507385140" required />
+          <input type="text" id="playerName" name="entry.1882343734" required />
           <label for="playerName">玩家名稱</label>
         </div>
     
         <!-- 最喜歡的英雄 -->
         <div class="input-field">
-          <input type="text" id="favoriteHero" name="entry.1856862631" required />
+          <input type="text" id="favoriteHero" name="entry.1323629758" required />
           <label for="favoriteHero">最喜歡的英雄</label>
         </div>
     
@@ -173,6 +173,7 @@
       <iframe name="hidden_iframe" style="display: none;"></iframe>
     </div>
     
+    
     <br>
     
     <!-- 初始化 Materialize 的 Select -->
@@ -183,14 +184,13 @@
       });
     
       // 表單提交事件
-      document.getElementById('playerFeedbackForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+      document.getElementById('playerFeedbackForm').addEventListener('submit', function () {
         const playerName = document.getElementById('playerName').value;
         const favoriteHero = document.getElementById('favoriteHero').value;
-        const favoriteMode = document.getElementById('favoriteMode').value;
-    
-        alert(感謝您的回饋！\n玩家名稱: ${playerName}\n最喜歡的英雄: ${favoriteHero}\n最喜歡的模式: ${favoriteMode});
+
+        alert(`感謝您的回饋！\n玩家名稱: ${playerName}\n最喜歡的英雄: ${favoriteHero}`);
       });
+
     </script>
     
     <!-- 頁尾 -->
