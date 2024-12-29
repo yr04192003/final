@@ -109,7 +109,7 @@
         const numRows = data.getNumberOfRows();
 
         let cardContent = '';
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 6; i++) {
           const name = data.getValue(i, 0); // 英雄名稱
           const imgUrl = data.getValue(i, 1); // 圖片網址
           const description = data.getValue(i, 2); // 描述
@@ -163,19 +163,6 @@
           <label for="favoriteHero">最喜歡的英雄</label>
         </div>
     
-        <!-- 最喜歡的模式 -->
-        <div class="input-field">
-          <select id="favoriteMode" name="entry.1856862631" required>
-            <option value="" disabled selected>選擇模式</option>
-            <option value="寶石爭奪戰">寶石爭奪戰</option>
-            <option value="荒野生死鬥">荒野生死鬥</option>
-            <option value="金庫保衛戰">金庫保衛戰</option>
-            <option value="亂鬥足球">亂鬥足球</option>
-            <option value="其他">其他</option>
-          </select>
-          <label for="favoriteMode">最喜歡的模式</label>
-        </div>
-    
         <!-- 提交按鈕 -->
         <div class="center-align">
           <button class="btn waves-effect waves-light black darken-2" type="submit">
@@ -198,4 +185,19 @@
       // 表單提交事件
       document.getElementById('playerFeedbackForm').addEventListener('submit', function(e) {
         e.preventDefault();
-       
+        const playerName = document.getElementById('playerName').value;
+        const favoriteHero = document.getElementById('favoriteHero').value;
+        const favoriteMode = document.getElementById('favoriteMode').value;
+    
+        alert(感謝您的回饋！\n玩家名稱: ${playerName}\n最喜歡的英雄: ${favoriteHero}\n最喜歡的模式: ${favoriteMode});
+      });
+    </script>
+    
+    <!-- 頁尾 -->
+    <footer class="page-footer black darken-2">
+      <div class="container center-align">
+        © 2024 荒野亂鬥介紹網頁 | 4110029007陳彥睿
+      </div>
+    </footer>
+  </body>
+</html> 
