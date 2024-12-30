@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>角色詳細資訊</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <style>
+    .character-content {
+      text-align: center;
+      margin-top: 50px;
+    }
+    .character-content img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .character-stats {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .character-stats p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper black">
+      <a href="#" class="brand-logo center">角色詳細資訊</a>
+    </div>
+  </nav>
+
+  <div class="container character-content" id="character-content">
+    <!-- 角色詳細資訊將插入這裡 -->
+  </div>
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    // 解析 URL 中的參數
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // 加載 Google Charts API
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(loadCharacterData);
+
+    function loadCharacterData() {
+      const characterId = getQueryParam('id'); // 獲取 URL 中的 id 參數
+      const sheetUrl = 'https://docs.google.com/spreadsheets/d/1EdQWbmD75DE20fFOYRw15SkMbu5CoH2NA_wYsuVNyNw/gviz/tq?sheet=sheet1';
+
+      const query = new google.visualization.Query(sheetUrl);
+      query.setQuery(`SELECT A, B, C, D, E WHERE A = ${characterId}`); // 獲取角色數據
+      query.send(displayCharacterData);
+    }
+
+    function displayCharacterData(response) {
+      const data = response.getDataTable();
+
+      // 提取角色資料
+      const name = data.getValue(0, 1); // 角色名稱
+      const imageUrl = data.getValue(0, 2); // 圖片 URL
+      const attack = data.getValue(0, 3); // 攻擊力
+      const health = data.getValue(0, 4); // 生命值
+
+      // 構建角色資訊 HTML
+      const content = `
+        <h4>${name}</h4>
+        <img src="${imageUrl}" alt="${name}">
+        <div class="character-stats">
+          <p><strong>攻擊力:</strong> ${attack}</p>
+          <p><strong>生命值:</strong> ${health}</p>
+        </div>
+      `;
+
+      document.getElementById('character-content').innerHTML = content;
+    }
+  </script>
+
+  <footer class="page-footer black">
+    <div class="container center-align white-text">
+      © 2024 荒野亂鬥介紹網頁 | 4110029007陳彥睿
+    </div>
+  </footer>
+</body>
+</html>

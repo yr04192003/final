@@ -6,21 +6,25 @@
   <title>荒野亂鬥角色介紹</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <style>
-    .card .card-image {
-      text-align: center;
-    }
+    .card-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
 
     .card-content h5 {
-      margin-top: 10px;
-      font-size: 1.4rem;
+      margin: 10px 0 5px;
+      font-size: 18px;
+      text-align: center;
       font-weight: bold;
-    }
+}
 
     .card-content p {
-      font-size: 1rem;
-      color: #333;
+      font-size: 14px;
       text-align: center;
-    }
+      color: #666;
+}
+
   </style>
 </head>
 <body>
@@ -76,7 +80,7 @@
               <p>${description}</p>
             </div>
             <div class="card-action">
-              <a href="${link}" class="btn black darken-2" target="_blank">了解更多</a>
+              <a href="character_detail.html?id=${i}" class="btn black darken-2" target="_blank">了解更多</a>
             </div>
           </div>
         </div>
@@ -87,3 +91,7 @@
     document.getElementById('brawler-cards').innerHTML = cardContent;
   }
 </script>
+
+<div class="card-action center-align">
+  <a href="all_character.html" class="btn black darken-2">查看更多角色</a>
+</div>
